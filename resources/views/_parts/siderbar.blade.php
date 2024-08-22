@@ -28,6 +28,28 @@
                             <span class="nk-menu-text">Mes jeux</span>
                         </a>
                     </li>
+                    <li class="nk-menu-item">
+                        <a href="{{ route('withdraw') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-wallet-out"></em></span>
+                            <span class="nk-menu-text">Retrait</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Settings</h6>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{ route('bonus') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-offer"></em></span>
+                            <span class="nk-menu-text">Bonus</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
+                        <a href="{{ route('settings') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                            <span class="nk-menu-text">Settings</span>
+                        </a>
+                    </li>
+                    @if(auth()->user()->user_type=0)
                     <li class="nk-menu-heading">
                         <h6 class="overline-title text-primary-alt">Games</h6>
                     </li>
@@ -64,6 +86,7 @@
                             <span class="nk-menu-text">Fixtures</span>
                         </a>
                     </li><!-- .nk-menu-item -->
+                    @endif
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

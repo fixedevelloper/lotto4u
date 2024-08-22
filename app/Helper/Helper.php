@@ -89,6 +89,31 @@ class Helper
         $fixtures=LottoFixtureItem::query()->where(['lotto_fixture_id'=>$fixture_id])->get();
         return $fixtures;
     }
+    static function getOccurenceToPlay($loto_fixture_item_id)
+    {
+        $fixtures=PlayingFixture::query()->where(['loto_fixture_item_id'=>$loto_fixture_item_id])->get();
+        $v1=0;
+        $v2=0;
+        $v3=0;
+        foreach ($fixtures as $fixture){
+            switch ($fixture->value){
+                case 1:
+                    $v1+=1;
+                    break;
+                case 2:
+                    $v2+=1;
+                    break;
+                case 3:
+                    $v3+=1;
+                    break;
+            }
+        }
+        return [
+            'v1'=>$v1,
+            'v2'=>$v2,
+            'v3'=>$v3,
+        ];
+    }
     static function getPlayingItem($game_id,$fixture_item_id)
     {
         $play=PlayingFixture::query()->firstWhere(['game_play_id'=>$game_id,'loto_fixture_item_id'=>$fixture_item_id]);

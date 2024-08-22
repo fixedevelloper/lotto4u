@@ -30,16 +30,14 @@ class DashboardController extends Controller
     public function settings(Request $request)
     {
         $address=Session::get("address_connect");
-        return view('account.settings', [
-            "address"=>$address,
+        return view('setting', [
             'route'=>"settings"
         ]);
     }
     public function bonus(Request $request)
     {
-        $address=Session::get("address_connect");
-        return view('account.bonus', [
-            "address"=>$address,
+
+        return view('bonus', [
             'route'=>"bonus"
         ]);
     }
@@ -65,7 +63,7 @@ class DashboardController extends Controller
     public function withdraw(Request $request)
     {
         $user=Auth::user();
-        return view('account.withdraw', [
+        return view('withdraw', [
             'route'=>"withdraw",
             'user'=>$user
         ]);
