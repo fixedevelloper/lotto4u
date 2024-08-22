@@ -6,8 +6,8 @@
             </div>
             <div class="nk-header-brand d-xl-none">
                 <a href="{{ route('home') }}" class="logo-link">
-                    <img class="logo-light logo-img" src="{{asset('logo.png')}}" alt="logo">
-                    <img class="logo-dark logo-img" src="{{asset('logo.png')}}" alt="logo-dark">
+                    <img class="logo-light logo-img" src="{{asset('assets/images/Logo.png')}}" alt="logo">
+                    <img class="logo-dark logo-img" src="{{asset('assets/images/Logo.png')}}" alt="logo-dark">
                 </a>
             </div><!-- .nk-header-brand -->
             <div class="nk-header-menu is-light">
