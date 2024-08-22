@@ -1,4 +1,4 @@
-@extends('bakend.layout')
+@extends('layout')
 @section('content')
 
 @endsection
