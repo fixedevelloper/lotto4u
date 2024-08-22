@@ -109,9 +109,9 @@ class Helper
             }
         }
         return [
-            'v1'=>($v1/sizeof($fixtures))*100,
-            'v2'=>$v2/sizeof($fixtures)*100,
-            'v3'=>$v3/sizeof($fixtures)*100,
+            'v1'=>sizeof($fixtures)==0?0:($v1/sizeof($fixtures))*100,
+            'v2'=>sizeof($fixtures)==0?0:$v2/sizeof($fixtures)*100,
+            'v3'=>sizeof($fixtures)==0?0:$v3/sizeof($fixtures)*100,
         ];
     }
     static function getPlayingItem($game_id,$fixture_item_id)
