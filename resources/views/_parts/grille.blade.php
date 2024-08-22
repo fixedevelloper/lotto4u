@@ -26,26 +26,26 @@
                 </div>
                 <div class="col-md-4 col-4">
                     <div class="mart__point__items">
-                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v1']}}">
+                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v1']}}%">
                             <input class="check-box" type="radio" name="{{$fixture->fixture_id}}" value="1" id="check1{{$item->id}}">
                             <label for="check1{{$item->id}}">
-                                <span class="break">1</span>
-                                <div><i class=""></i></div>
+                                <span class="break">1({{$occurences['v1']}}%)</span>
+                                <div><i class="">1</i></div>
                             </label>
 
                         </a>
-                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v3']}}">
+                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v3']}}%">
                             <input type="radio" name="{{$fixture->fixture_id}}" value="3" id="check3{{$item->id}}">
                             <label for="check3{{$item->id}}">
-                                <span class="break">x</span>
+                                <span class="break">x({{$occurences['v3']}}%)</span>
                                 <div> <i class=""></i></div>
                             </label>
 
                         </a>
-                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v2']}}">
+                        <a href="javascript:void(0);" class="point__box" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombres de jeux {{$occurences['v2']}}%">
                             <input type="radio" name="{{$fixture->fixture_id}}" value="2" id="check2{{$item->id}}">
                             <label for="check2{{$item->id}}">
-                                <span class="break">2</span>
+                                <span class="break">2({{$occurences['v2']}}%)</span>
                                 <div><i class=""></i></div>
                             </label>
 
