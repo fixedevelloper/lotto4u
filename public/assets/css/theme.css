@@ -1,0 +1,52 @@
+.mart__point__items {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+.mart__point__items .point__box {
+    background: #f2dec8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+}
+.point__box {
+    background: #f2dec8;
+    border-radius: 5px;
+    padding: 15px 5px;
+    display: flex;
+    width: 87px;
+    justify-content: center;
+    align-items: center;
+    height: 67px;
+    text-align: center;
+    transition: all 0.4s;
+}
+.break {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+}
+.mart__point__items label div {
+    background: #f2dec8;
+    color: #f2dec8;
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    border: 2px solid #fff;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.mart__point__items input {
+    display: none;
+}
+input:checked + label div {
+    background: #16a085;
+}
+
