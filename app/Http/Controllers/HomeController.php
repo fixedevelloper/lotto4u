@@ -130,6 +130,7 @@ class HomeController extends Controller
     {
         $data = json_decode($request->getContent(), true);
         $ob = $data['ob'];
+        DB::beginTransaction();
         $loto_fixture = new LottoFixture();
         $loto_fixture->title = $data['title'];
         $end_time = $data['end_date'] . ' ' . $data['end_time'];
@@ -143,6 +144,7 @@ class HomeController extends Controller
             $item->lotto_fixture_id = $loto_fixture->id;
             $item->save();
         }
+        DB::commit();
         flash()->success('Operation completed successfully');
         return response()->json($ob);
 
@@ -152,6 +154,7 @@ class HomeController extends Controller
     {
         $data = json_decode($request->getContent(), true);
         $ob = $data['ob'];
+        DB::beginTransaction();
         $user = Auth::user();
         if (is_null($user)) {
             return response("User not logged", 403);
@@ -163,8 +166,10 @@ class HomeController extends Controller
         $game->user_id = $user->id;
         $game->lotto_fixture_id = $data['lotto_fixture_id'];
         $game->save();
-
         for ($i = 0; $i < sizeof($ob); ++$i) {
+            if (!isset($ob[$i]['value'])){
+                return response("Grille not Completed", 403);
+            }
             $item = new PlayingFixture();
             $item->value = $ob[$i]['value'];
             $item->game_play_id = $game->id;
@@ -173,6 +178,7 @@ class HomeController extends Controller
         }
         //$user->sold -= env("PRICE_GAME");
         $user->save();
+        DB::commit();
         flash()->success('Operation completed successfully');
         return response()->json(['id'=>$game->id]);
     }

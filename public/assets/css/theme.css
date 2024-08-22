@@ -49,4 +49,97 @@
 input:checked + label div {
     background: #16a085;
 }
-
+.grille .title{
+    font-size: 16px;
+    font-weight: bold;
+}
+@media screen and (min-width: 375px) {
+    .grille .title{
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .break {
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+    }
+    .mart__point__items label div {
+        background: #f2dec8;
+        color: #f2dec8;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        border: 1px solid #fff;
+        text-align: center;
+        line-height: 12px;
+        margin-right: 6px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .mart__point__items .point__box {
+        background: #f2dec8;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        text-align: center;
+    }
+    .point__box {
+        background: #f2dec8;
+        border-radius: 5px;
+        padding: 15px 5px;
+        display: flex;
+        width: 57px;
+        justify-content: center;
+        align-items: center;
+        height: 37px;
+        text-align: center;
+        transition: all 0.4s;
+    }
+}
+@media only screen and (min-width: 575px){
+    .grille .title{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .break {
+        display: block;
+        font-size: 14px;
+        font-weight: 800;
+    }
+    .mart__point__items label div {
+        background: #f2dec8;
+        color: #f2dec8;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        border: 1px solid #0a0f16;
+        text-align: center;
+        line-height: 12px;
+        margin-right: 6px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .mart__point__items .point__box {
+        background: #f2dec8;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        text-align: center;
+    }
+    .point__box {
+        background: #f2dec8;
+        border-radius: 5px;
+        padding: 15px 5px;
+        display: flex;
+        width: 87px;
+        justify-content: center;
+        align-items: center;
+        height: 67px;
+        text-align: center;
+        transition: all 0.4s;
+    }
+}

@@ -33,18 +33,64 @@
     <span id="lotto_fixture_id" hidden>{{$lotto->id}}</span>
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
-            <div class="card card_dark">
+            <div class="card">
                 <div class="card-body">
 
-                            <div class="table-responsive">
+                    {{--        <div class="table-responsive">
                                 <table class="table table__wrap" id="table_game">
-                                    <tbody>
+                                    <tbody>--}}
                                     @foreach($fixtures as $item)
                                         @php
                                             $fixture=\App\Helper\Helper::getFixture($item->fixture_id);
 
                                         @endphp
-                                        <tr class="table__items b__bottom">
+                                        <div class="row mt-3 grille" data-id="{{$item->id}}" data-fixture="{{$fixture->fixture_id}}">
+                                            <div class="col-md-4 col-4">
+                                                <span hidden id="card{{$item->id}}">{{$item->id}}</span>
+                                                <span hidden id="fixt{{$fixture->fixture_id}}">{{$fixture->fixture_id}}</span>
+                                                <div class="title">
+                                                    <img class="img"
+                                                         src="{{$fixture->team_home_logo}}">
+                                                    {{$fixture->team_home_name}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-4">
+                                                <div class="mart__point__items">
+                                                    <a href="javascript:void(0);" class="point__box">
+                                                        <input class="check-box" type="radio" name="{{$fixture->fixture_id}}" value="1" id="check1{{$item->id}}">
+                                                        <label for="check1{{$item->id}}">
+                                                            <span class="break">1</span>
+                                                            <div><i class="fas fa-check"></i></div>
+                                                        </label>
+
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="point__box">
+                                                        <input type="radio" name="{{$fixture->fixture_id}}" value="3" id="check3{{$item->id}}">
+                                                        <label for="check3{{$item->id}}">
+                                                            <span class="break">x</span>
+                                                            <div><i class="fas fa-check"></i></div>
+                                                        </label>
+
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="point__box">
+                                                        <input type="radio" name="{{$fixture->fixture_id}}" value="2" id="check2{{$item->id}}">
+                                                        <label for="check2{{$item->id}}">
+                                                            <span class="break">2</span>
+                                                            <div><i class="fas fa-check"></i></div>
+                                                        </label>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-4">
+                                                <div class="title">
+                                                    <img class="img"
+                                                         src="{{$fixture->team_away_logo}}">
+                                                    {{$fixture->team_away_name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                     {{--   <tr class="table__items b__bottom">
                                             <td width="30%">
                                                 <span hidden>{{$item->id}}</span>
                                                 <span hidden>{{$fixture->fixture_id}}</span>
@@ -89,10 +135,10 @@
                                                     {{$fixture->team_away_name}}
                                                 </h6>
                                             </td>
-                                        </tr>
+                                        </tr>--}}
                                     @endforeach
-                                    </tbody>
-                                </table>
+                              {{--      </tbody>
+                                </table>--}}
                             </div>
 
                     <div class="d-grid gap-2 mt-2 mb-5">
@@ -116,8 +162,17 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             })
+            console.log("reeeeee")
             jsonObj = [];
-            $("#table_game>tbody>tr").each(function () {
+            $(".grille").each(function () {
+/*                var id_card = '#card' + $(this).data('id')
+                var id_ph = '#fixt' + $(this).data('fixture')*/
+                item = {};
+                item['id'] = $(this).data('id');
+                item['value'] = $('input[name="'+$(this).data('fixture')+'"]:checked').val();
+                jsonObj.push(item)
+            });
+       /*     $("#table_game>tbody>tr").each(function () {
                 var row = $(this).closest('tr')[0];
                 var id = row.cells[0].children[0].innerText;
                 var id_ = row.cells[0].children[1].innerText;
@@ -129,7 +184,7 @@
                 item['value'] = $('input[name="'+id_+'"]:checked').val();
 
                 jsonObj.push(item)
-            });
+            });*/
             console.log(JSON.stringify({data: jsonObj}))
             $.ajax({
                 url: "{{ route('postGame') }}",
@@ -145,8 +200,7 @@
                     window.location=url;
                 },
                 error: function (err) {
-                    toastr.error('An error has occurred' + JSON.stringify((err)),'Error')
-
+                    toastr.error('An error has occurred' + JSON.stringify((err.reponseText)),'Error')
                     setTimeout(function () {
                         $("#overlay").fadeOut(300);
                     }, 500);
