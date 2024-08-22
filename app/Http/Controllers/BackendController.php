@@ -46,7 +46,7 @@ class BackendController extends Controller
             $end = $request->get('date_end');
         }
         $transactions=Transaction::query()->whereBetween('created_at',[$begin,$end])
-            ->orderByDesc("id")->get();
+            ->orderByDesc("id")->paginate(20);
         return view('backend.transaction', [
             'route'=>"transaction",
             'transactions'=>$transactions,
