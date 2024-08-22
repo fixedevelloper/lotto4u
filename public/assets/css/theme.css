@@ -54,30 +54,34 @@ input:checked + label div {
     font-weight: bold;
 }
 .grille .img{
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
 }
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 475px) {
+    .grille .img{
+        width: 18px;
+        height: 18px;
+    }
     .grille .title{
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
     }
     .break {
         display: block;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 800;
     }
     .mart__point__items label div {
         background: #f2dec8;
         color: #f2dec8;
-        width: 15px;
-        height: 15px;
+        width: 12px;
+        height: 12px;
         display: inline-block;
         border: 1px solid #fff;
         text-align: center;
-        line-height: 12px;
-        margin-right: 6px;
-        border-radius: 3px;
+        line-height: 8px;
+        margin-right: 0px;
+        border-radius: 2px;
         cursor: pointer;
     }
     .mart__point__items .point__box {
@@ -102,7 +106,7 @@ input:checked + label div {
         transition: all 0.4s;
     }
 }
-@media only screen and (min-width: 575px){
+/*@media only screen and (min-width: 575px){
     .grille .title{
         font-size: 14px;
         font-weight: bold;
@@ -146,4 +150,4 @@ input:checked + label div {
         text-align: center;
         transition: all 0.4s;
     }
-}
+}*/
