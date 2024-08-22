@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Session;
 
 class BackendController extends Controller
 {
+
+    public function dashboard(Request $request)
+    {
+        return view('dashboard', [
+
+        ]);
+    }
     public function partipates(Request $request)
     {
         $address=Session::get("address_connect");
