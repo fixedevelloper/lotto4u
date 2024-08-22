@@ -49,7 +49,7 @@
                             <span class="nk-menu-text">Settings</span>
                         </a>
                     </li>
-                    @if(auth()->user()->user_type=0)
+                    @if(auth()->user()->user_type==0)
                     <li class="nk-menu-heading">
                         <h6 class="overline-title text-primary-alt">Games</h6>
                     </li>
