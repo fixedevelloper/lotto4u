@@ -53,6 +53,10 @@ input:checked + label div {
     font-size: 16px;
     font-weight: bold;
 }
+.grille .img{
+    width: 18px;
+    height: 18px;
+}
 @media screen and (min-width: 375px) {
     .grille .title{
         font-size: 12px;

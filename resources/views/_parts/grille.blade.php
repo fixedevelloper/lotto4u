@@ -52,7 +52,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4 col-4">
+                <div class="col-md-4 col-4 text-end">
                     <div class="title">
                         <img class="img"
                              src="{{$fixture->team_away_logo}}">
