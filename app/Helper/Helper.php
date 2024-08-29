@@ -7,6 +7,7 @@ namespace App\Helper;
 use App\Models\Fixture;
 use App\Models\GamePlay;
 use App\Models\LottoFixtureItem;
+use App\Models\Payment;
 use App\Models\PlayingFixture;
 use Illuminate\Support\Facades\Mail;
 use Mailjet\LaravelMailjet\Facades\Mailjet;
@@ -23,6 +24,14 @@ class Helper
             $all .= $allowed_characters[rand(0, count($allowed_characters) - 1)];
         }
         return $all;
+    }
+    static function calculCagnotte($gameID){
+        $cagnotte=Payment::query()
+            ->leftJoin('game_plays','game_plays.id','=','payments.game_play_id')
+            ->leftJoin('lotto_fixtures','lotto_fixtures.id','=','game_plays.lotto_fixture_id')
+            ->where(['lotto_fixtures.id'=>$gameID,'status'=>'success'])->count(['game_plays.id']);
+        logger($gameID);
+        return $cagnotte*env('PRICE_GAME');
     }
     static function calculAmountWinner($cagnote,$players,$totalfixture){
         $amount_winners=[];

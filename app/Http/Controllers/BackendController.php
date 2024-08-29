@@ -9,6 +9,7 @@ use App\Models\GamePlay;
 use App\Models\LottoFixture;
 use App\Models\LottoFixtureItem;
 
+use App\Models\Payment;
 use App\Models\PlayingFixture;
 use App\Models\Transaction;
 use App\Models\User;
@@ -45,7 +46,7 @@ class BackendController extends Controller
             $begin = $request->get('date_begin');
             $end = $request->get('date_end');
         }
-        $transactions=Transaction::query()->whereBetween('created_at',[$begin,$end])
+        $transactions=Payment::query()->whereBetween('created_at',[$begin,$end])
             ->orderByDesc("id")->paginate(20);
         return view('backend.transaction', [
             'route'=>"transaction",
@@ -56,7 +57,7 @@ class BackendController extends Controller
     }
     public function transaction_detail(Request $request,$id)
     {
-        $transaction=Transaction::query()->find($id);
+        $transaction=Payment::query()->find($id);
         if ($request->method()=="POST"){
             if ($transaction->status !=="complete"){
                 $transaction->amount=$request->get("amount");

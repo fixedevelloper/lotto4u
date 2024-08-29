@@ -34,6 +34,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
             <div class="card">
+                <div class="card-header"><span class="h5 float-end">Cagnotte:{{\App\Helper\Helper::calculCagnotte($lotto->id)}}FCFA</span></div>
                 <div class="card-body">
 
                     {{--        <div class="table-responsive">

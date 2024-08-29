@@ -40,7 +40,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Type</th>
                         <th>Payment Methods</th>
                         <th>Amount</th>
                         <th>Status</th>
@@ -51,8 +50,7 @@
                     <tbody>
                     @foreach($transactions as $transaction)
                         <tr>
-                        <td>{{strtoupper($transaction->type)}}</td>
-                        <td>{{strtoupper($transaction->method)}}</td>
+                        <td>{{strtoupper($transaction->carrier)}}</td>
                         <td>{{$transaction->amount}} USD</td>
                         <td class="@if($transaction->status=='pending') pending @elseif($transaction->status=='cancel')cancel @else complate @endif">{{$transaction->status}}</td>
                         <td>{{$transaction->user->name}}</td>

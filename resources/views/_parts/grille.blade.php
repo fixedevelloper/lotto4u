@@ -1,8 +1,9 @@
 <div class="col-lg-8 col-12 mt-5">
     <div class="card card_dark">
         <div class="card-header">
-            <h5>{{$grille->title}}</h5>
+            <h5>{{$grille->title}}<span class="float-end">Cagnotte:{{\App\Helper\Helper::calculCagnotte($grille->id)}}FCFA</span></h5>
             <p> End of validation :{{\Carbon\Carbon::parse($grille->end_time)->format("d/m/Y")}}</span></p>
+
         </div>
         <div class="card-body">
             @php
