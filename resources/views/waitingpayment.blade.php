@@ -14,7 +14,15 @@
             <div class="h2 text-center">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
+            <div class="h2 text-center">
+                <form method="POST">
+                    @csrf
+                    <button class="btn btn-primary">
+                        Refresh
+                    </button>
+                </form>
 
+            </div>
         </div>
     </div>
 

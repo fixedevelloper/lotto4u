@@ -14,17 +14,17 @@
     </div>
     <div class="accordion mt-3" id="accordionExample">
         @foreach($mygames as $item)
-    <div class="accordion-item">
+    <div class="accordion-item" >
         <h2 class="accordion-head" id="{{$loop->index}}">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{$item->id}}"
-                    aria-expanded="false" aria-controls="{{$item->id}}">
-                {{$item->lotto_fixture->title}}
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{$item->game->id}}"
+                    aria-expanded="false" aria-controls="{{$item->game->id}}">
+                {{$item->game->lotto_fixture->title}}
             </button>
         </h2>
-        <div id="col{{$item->id}}" class="accordion-body collapse" aria-labelledby="{{$loop->index}}" data-bs-parent="#accordionExample">
+        <div id="col{{$item->game->id}}" class="accordion-body collapse" aria-labelledby="{{$loop->index}}" data-bs-parent="#accordionExample">
             <div class="accordion-item text-black-50">
             @php
-            $lotto_fixtures=\App\Helper\Helper::getLottofixtureItem($item->lotto_fixture->id)
+            $lotto_fixtures=\App\Helper\Helper::getLottofixtureItem($item->game->lotto_fixture->id)
             @endphp
                 <table class="table">
                     <thead>
@@ -39,7 +39,7 @@
                     @foreach($lotto_fixtures as $lotto)
                         @php
                             $fixture=\App\Helper\Helper::getFixture($lotto->fixture_id);
-                          $value=\App\Helper\Helper::getPlayingItem($item->id,$lotto->id)->value;
+                          $value=\App\Helper\Helper::getPlayingItem($item->game->id,$lotto->id)->value;
 
                           if ($fixture->team_away_winner){
                               $result=2;

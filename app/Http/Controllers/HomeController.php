@@ -7,11 +7,13 @@ namespace App\Http\Controllers;
 
 use App\Helper\Helper;
 use App\Helper\PaymentApi;
+use App\Helper\PaymentApiService;
 use App\Models\Contact;
 use App\Models\GamePlay;
 use App\Models\LottoFixture;
 use App\Models\LottoFixtureItem;
 use App\Models\Message;
+use App\Models\Payment;
 use App\Models\PlayingFixture;
 use App\Models\RegisterOnline;
 use App\Models\Transaction;
@@ -27,9 +29,21 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\IpUtils;
 use function Carbon\Traits\ne;
+use function Ramsey\Uuid\Generator\timestamp;
 
 class HomeController extends Controller
 {
+
+    protected $paymentApiService;
+
+    /**
+     * HomeController constructor.
+     * @param $paymentApiService
+     */
+    public function __construct(PaymentApiService $paymentApiService)
+    {
+        $this->paymentApiService = $paymentApiService;
+    }
 
     public function home(Request $request)
     {  if (is_null($request->get('date'))) {
@@ -90,33 +104,57 @@ class HomeController extends Controller
 
         ]);
     }
-    public function waitingpayment()
+    public function waitingpayment(Request $request)
     {
+        $refer=Session::get('trans_ref');
+        if ($request->method()=="POST"){
+            if (isset($refer)){
+                $rest=$this->paymentApiService->getPayID([
+                    'transactionId'=>$refer,
+                ]);
+                logger($rest);
+                if (isset($rest['id'])){
+                    $payment=Payment::query()->firstWhere(['reference'=>$refer]);
+                    if ($rest['status']=="Success"){
+
+                        if ($payment->status!="success"){
+                            $payment->status="success";
+                            $payment->save();
+                        }
+                        return redirect()->route('dashboard');
+                    }
+                }
+            }
+        }
 
         return view('waitingpayment', [
 
         ]);
     }
-    public function payment(Request $request)
+    public function payment(Request $request,$id)
     {
-        $game=GamePlay::query()->find($request->game);
+        $game=GamePlay::query()->find($id);
         if ($request->method()=='POST'){
-            $rest=PaymentApi::payment([
+         $rest=$this->paymentApiService->payment([
                 'phone'=>$request->phone,
-                'amount'=>$request->amount,
+                'amount'=>intval($request->amount),
                 'country'=>$request->country,
                 'carrier'=>$request->carrier
             ]);
-            logger($rest['status']);
-           if ($rest['status']==true){
-                $paymen=new Transaction();
+            logger($rest);
+           if ($rest['status']=='true'){
+                $paymen=new Payment();
                 $paymen->user_id=\auth()->id();
-                $paymen->type=$request->country;
+                //$paymen->type=$request->country;
                 $paymen->amount=$request->amount;
-                $paymen->method=$request->carrier;
+               $paymen->game_play_id=$game->id;
+                $paymen->carrier=$request->carrier;
+                    $paymen->phone=$request->phone;
+                 $paymen->reference=$rest['transactionId'];
                 $paymen->save();
+                Session::put('trans_ref',$rest['transactionId']);
                 flash()->success('Operation completed successfully');
-                return redirect()->route('waitingpayment');
+                return redirect()->route('waitingpayment',['req'=>Helper::generatealeatoire(88)]);
             }
             flash()->error('Operation echec');
         }

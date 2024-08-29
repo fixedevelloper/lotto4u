@@ -20,7 +20,7 @@ Route::get('/game/{id}', [HomeController::class, 'game'])
     ->name('game');
 Route::get('/resultat/{id}', [HomeController::class, 'resultat'])
     ->name('resultat');
-Route::get('/waitingpayment', [HomeController::class, 'waitingpayment'])
+Route::match(["POST", "GET"], '/waitingpayment', [HomeController::class, 'waitingpayment'])
     ->name('waitingpayment');
 Route::match(["POST", "GET"],'/payment/{id}', [HomeController::class, 'payment'])
     ->name('home_payment');

@@ -7,7 +7,7 @@
                 <div class="nk-block-head-content">
                     <h4 class="nk-block-title">PaymentGame</h4>
                     <div class="nk-block-des">
-                        <p>.</p>
+                        <p>Make your payment.</p>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,8 @@
                 <div class="form-group">
                     <label class="form-label">Carrier</label>
                     <div class="form-control-wrap">
-                        <select name="carier" class="form-select js-select2">
+                        <select name="carrier" class="form-select js-select2">
+                            <option value="NONE">Choose carrier</option>
                             <option value="MTN">MTN</option>
                             <option value="Orange">ORANGE</option>
                             <option value="Airtel">Airtel</option>

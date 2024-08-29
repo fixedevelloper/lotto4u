@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GamePlay;
 use App\Models\LottoFixture;
+use App\Models\Payment;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
@@ -97,7 +98,8 @@ class DashboardController extends Controller
             $timestamp = Carbon::parse($date_)->addDays(1)->format("Y-m-d h:i");
         }
         $user=Auth::user();
-        $mygames=GamePlay::query()->where(['user_id'=>$user->id])->whereBetween('created_at',[$date_,$timestamp])->get();
+        $mygames=Payment::query()->where(['user_id'=>$user->id,'status'=>'success'])->whereBetween('created_at',[$date_,$timestamp])->get();
+      //  $mygames=GamePlay::query()->where(['user_id'=>$user->id])->whereBetween('created_at',[$date_,$timestamp])->get();
         return view('mygame', [
             "user"=>$user,
             'mygames'=>$mygames,
