@@ -196,6 +196,7 @@ class HomeController extends Controller
         DB::beginTransaction();
         $user = Auth::user();
         if (is_null($user)) {
+            flash()->error('User not logged');
             return response("User not logged", 403);
         }
 /*        if ($user->sold < env("PRICE_GAME")) {
@@ -207,6 +208,7 @@ class HomeController extends Controller
         $game->save();
         for ($i = 0; $i < sizeof($ob); ++$i) {
             if (!isset($ob[$i]['value'])){
+                flash()->error('Grille not Completed');
                 return response("Grille not Completed", 403);
             }
             $item = new PlayingFixture();

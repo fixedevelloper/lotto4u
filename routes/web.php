@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('bonus');
     Route::get('withdraw', [DashboardController::class, 'withdraw'])
         ->name('withdraw');
+    Route::match(["POST", "GET"],'withdraw_pay', [DashboardController::class, 'withdrawPay'])
+        ->name('withdraw_pay');
     Route::get('transaction', [DashboardController::class, 'transaction'])
         ->name('transaction');
     Route::get('settings', [DashboardController::class, 'settings'])

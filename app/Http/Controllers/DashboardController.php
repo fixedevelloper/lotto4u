@@ -4,19 +4,32 @@
 namespace App\Http\Controllers;
 
 
+use App\Helper\PaymentApiService;
 use App\Models\GamePlay;
 use App\Models\LottoFixture;
 use App\Models\Payment;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
 
+    protected $paymentApiService;
+
+    /**
+     * HomeController constructor.
+     * @param $paymentApiService
+     */
+    public function __construct(PaymentApiService $paymentApiService)
+    {
+        $this->paymentApiService = $paymentApiService;
+    }
     public function dashboard(Request $request)
     {
         $id=Session::get("id_connect");
@@ -59,12 +72,52 @@ class DashboardController extends Controller
             'route'=>"deposit",
             "user"=>$user
         ]);
-
     }
     public function withdraw(Request $request)
     {
         $user=Auth::user();
         return view('withdraw', [
+            'route'=>"withdraw",
+            'user'=>$user
+        ]);
+    }
+    public function withdrawPay(Request $request)
+    {
+        $user=Auth::user();
+        if ($request->method()=="POST"){
+            if (is_null($user)){
+                flash()->error('Please loggedIn');
+                return back();
+            }
+            if ($user->sold<$request->amount){
+                flash()->error('Please loggedIn');
+                return back();
+            }
+            $rest=$this->paymentApiService->withdraw([
+                'phone'=>$request->phone,
+                'amount'=>intval($request->amount),
+                'country'=>$request->country,
+                'carrier'=>$request->carrier
+            ]);
+            if ($rest['status']=='true'){
+                DB::beginTransaction();
+                $withdraw=new Withdraw();
+                $withdraw->user_id=$user->id;
+                $withdraw->amount=$request->amount;
+                $withdraw->phone=$request->phone;
+                $withdraw->reference=$rest['transactionId'];
+                $withdraw->save();
+                $user->sold-=$request->amount;
+                $user->save();
+                DB::commit();
+            }else{
+                flash()->error('Please Internal error');
+                return back();
+            }
+            flash()->success('Operation Successfull');
+            return redirect()->route('withdraw');
+        }
+        return view('withdraw_pay', [
             'route'=>"withdraw",
             'user'=>$user
         ]);

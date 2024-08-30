@@ -8,6 +8,17 @@ use GuzzleHttp\Client;
 
 class PaymentApiService
 {
+    function withdraw($from){
+        $json=[
+            'apikey'=>'87S86K61M9W11G27R25G99W30O96X23F87D79N85G',
+            'country'=>$from['country'],
+            'action'=>'Send fund',
+            'carrier'=>$from['carrier'],
+            'number'=>$from['phone'],
+            'amount'=>$from['amount']
+        ];
+        return $this->cURL('https://digitwave-services.com/api/add',$json);
+    }
      function payment($from){
         $json=[
             'apikey'=>'87S86K61M9W11G27R25G99W30O96X23F87D79N85G',
@@ -17,15 +28,6 @@ class PaymentApiService
             'number'=>$from['phone'],
             'amount'=>$from['amount']
         ];
-        logger(json_encode($json));
-        $options=[
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'body' => json_encode($json)
-        ];
-        $client = new Client(['headers' => $options]);
-        $res = $client->request('POST', 'https://digitwave-services.com/api/add');
-       //return json_decode($res->getBody(),true);
          return $this->cURL('https://digitwave-services.com/api/add',$json);
     }
      function getPayID($from){
@@ -33,16 +35,7 @@ class PaymentApiService
             'apikey'=>'87S86K61M9W11G27R25G99W30O96X23F87D79N85G',
             'transactionId'=>$from['transactionId'],
         ];
-        logger($json);
-        $options=[
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'body' => json_encode($json)
-        ];
-        $client = new Client(['headers' => $options]);
-       // $res = $client->request('POST', 'https://digitwave-services.com/api/getwithid');
        return $this->cURL('https://digitwave-services.com/api/getwithid',$json);
-       // return json_decode($res->getBody(),true);
     }
     protected function cURL($url, $json)
     {

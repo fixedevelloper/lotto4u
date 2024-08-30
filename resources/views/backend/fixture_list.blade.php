@@ -10,7 +10,7 @@
             <div class="">
                 <div class="custom_card casinoform__tabe">
                     <div class="cainoform__wrap">
-                        <form id="form_grille">
+                        <form id="mygame_form">
                         <div class="row g-4">
                             <div class="col-xl-6">
                                 <div class="casino__date">
@@ -18,7 +18,7 @@
                                         From
                                     </h4>
                                     <div class="calender-bar">
-                                        <input value="{{$date_begin}}" name="date_begin" type="text" class="datepicker" placeholder="2023-2-2">
+                                        <input value="{{$date_begin}}" name="date_begin" type="date" class="datepicker" placeholder="2023-2-2">
                                         <i class="icon-calender"></i>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                         Until
                                     </h4>
                                     <div class="calender-bar">
-                                        <input value="{{$date_end}}" name="date_end" id="grille_date" type="text" class="datepicker" placeholder="2023-2-2">
+                                        <input value="{{$date_end}}" name="date_end" id="myform_game_input" type="date" class="datepicker" placeholder="2023-2-2">
                                         <i class="icon-calender"></i>
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Helper\Helper;
 use App\Models\Fixture;
 use App\Models\GamePlay;
 use App\Models\LottoFixture;
@@ -126,7 +127,11 @@ class BackendController extends Controller
     {
         $lotto = LottoFixture::find($id);
         $count_items = LottoFixtureItem::query()->where(['lotto_fixture_id' => $id])->count();
-        $games = GamePlay::query()->where(['lotto_fixture_id' => $id])->get();
+       // $games = GamePlay::query()->where(['lotto_fixture_id' => $id])->get();
+        $games=Payment::query()
+            ->leftJoin('game_plays','game_plays.id','=','payments.game_play_id')
+            ->leftJoin('lotto_fixtures','lotto_fixtures.id','=','game_plays.lotto_fixture_id')
+            ->where(['lotto_fixtures.id'=>$id,'status'=>'success'])->get(['game_plays.id','game_plays.user_id']);
         $winners = [];
         foreach ($games as $game) {
             $count = 0;
@@ -142,18 +147,18 @@ class BackendController extends Controller
                     $count++;
                 }
             }
+            $user=User::query()->find($game->user_id);
             $winners[] = [
                 "game_id" => $game->id,
-                "user" => $game->user->name,
-                "phone" => $game->user->phone,
+                "user" => $user->name,
+                "phone" => $user->phone,
                 "count" => $count,
-
             ];
         }
         $volume  = array_column($winners, 'count');
         array_multisort($volume, SORT_DESC, $winners);
 
-        $winners=Helpers::calculAmountWinner(Session::get("balance"),$winners,$count_items);
+        $winners=Helper::calculAmountWinner(count($games)*env('PRICE_GAME'),$winners,$count_items);
         return view('backend.payment', [
             "lotto" => $lotto,
             "winners"=>$winners,
@@ -165,7 +170,11 @@ class BackendController extends Controller
     {
         $lotto = LottoFixture::find($id);
         $list_items = LottoFixtureItem::query()->where(['lotto_fixture_id' => $id])->get();
-        $games = GamePlay::query()->where(['lotto_fixture_id' => $id])->get();
+        //$games = GamePlay::query()->where(['lotto_fixture_id' => $id])->get();
+        $games=Payment::query()
+            ->leftJoin('game_plays','game_plays.id','=','payments.game_play_id')
+            ->leftJoin('lotto_fixtures','lotto_fixtures.id','=','game_plays.lotto_fixture_id')
+            ->where(['lotto_fixtures.id'=>$id,'status'=>'success'])->get(['game_plays.id','game_plays.user_id']);
         $winners = [];
 
         foreach ($games as $game) {
@@ -182,10 +191,11 @@ class BackendController extends Controller
                     $count++;
                 }
             }
+            $user=User::query()->find($game->user_id);
             $winners[] = [
                 "game_id" => $game->id,
-                "user" => $game->user->name,
-                "phone" => $game->user->phone,
+                "user" => $user->name,
+                "phone" => $user->phone,
                 "count" => $count,
             ];
         }
@@ -203,12 +213,12 @@ class BackendController extends Controller
         $data = json_decode($request->getContent(), true);
         $ob = $data['ob'];
         for ($i = 0; $i < sizeof($ob); ++$i) {
-            $payment=new Payment();
-            $payment->game_play_id=$ob[$i]['game_play_id'];
-            $payment->user_id=$ob[$i]['user_id'];
-            $payment->amount=$ob[$i]['amount'];
-            $payment->date_game=$ob[$i]['date_game'];
-            $payment->save();
+            $transaction=new Transaction();
+            $transaction->game_play_id=$ob[$i]['game_play_id'];
+            $transaction->user_id=$ob[$i]['user_id'];
+            $transaction->amount=$ob[$i]['amount'];
+            $transaction->status="success";
+            $transaction->save();
         }
         return response()->json($ob);
 

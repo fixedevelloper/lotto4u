@@ -66,7 +66,7 @@ class Helper
             $amount_winners[]=[
                 "game_id" => $wi["game_id"],
                 "user" => $wi["user"],
-                "address" => $wi["address"],
+                "address" => "",
                 "count" => $wi["count"],
                 "amount"=>$amount_x_x/sizeof($winner_x_x)
             ];
@@ -75,7 +75,7 @@ class Helper
             $amount_winners[]=[
                 "game_id" => $wi["game_id"],
                 "user" => $wi["user"],
-                "address" => $wi["address"],
+                "address" =>"",
                 "count" => $wi["count"],
                 "amount"=>$amount_x_1/sizeof($winner_1_x)
             ];
@@ -84,7 +84,7 @@ class Helper
             $amount_winners[]=[
                 "game_id" => $wi["game_id"],
                 "user" => $wi["user"],
-                "address" => $wi["address"],
+                "address" => "",
                 "count" => $wi["count"],
                 "amount"=>$amount_x_2/sizeof($winner_x_2)
             ];

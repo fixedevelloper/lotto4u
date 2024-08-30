@@ -57,7 +57,15 @@ input:checked + label div {
     width: 25px;
     height: 25px;
 }
+
 @media screen and (max-width: 475px) {
+    .table__items h6{
+        font-size: 10px;
+    }
+    .table__items img{
+        width: 18px;
+        height: 18px;
+    }
     .grille .img{
         width: 18px;
         height: 18px;
@@ -74,8 +82,8 @@ input:checked + label div {
     .mart__point__items label div {
         background: #f2dec8;
         color: #f2dec8;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         display: inline-block;
         border: 1px solid #fff;
         text-align: center;

@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{ route('configuration') }}" class="nk-menu-link">
+                        <a href="{{ route('lotto_fixture_list') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-play"></em></span>
                             <span class="nk-menu-text">Resultats</span>
                         </a>

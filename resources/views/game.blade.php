@@ -202,7 +202,8 @@
                     window.location=url;
                 },
                 error: function (err) {
-                    toastr.error('An error has occurred' + JSON.stringify((err.reponseText)),'Error')
+                    window.location.reload(true);
+                    //toastr.error('An error has occurred' + JSON.stringify((err.reponseText)),'Error')
                     setTimeout(function () {
                         $("#overlay").fadeOut(300);
                     }, 500);

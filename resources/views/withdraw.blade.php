@@ -14,7 +14,7 @@
                     <div class="toggle-expand-content" data-content="pageMenu">
                         <ul class="nk-block-tools g-3">
                             <li>
-                               <a class="btn btn-primary"><i class="ni ni-plus"></i> Effectuer retait</a>
+                               <a href="{{route('withdraw_pay')}}" class="btn btn-primary"><i class="ni ni-plus"></i> Effectuer retait</a>
                             </li>
                         </ul>
                     </div>
