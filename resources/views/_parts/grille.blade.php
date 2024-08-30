@@ -109,7 +109,6 @@
                         </tr>--}}
                     @endforeach
 
-            </div>
 
             <div class="d-grid gap-2 mt-2 mb-5">
 

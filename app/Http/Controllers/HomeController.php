@@ -121,7 +121,8 @@ class HomeController extends Controller
                             $payment->status="success";
                             $payment->save();
                         }
-                        return redirect()->route('dashboard');
+                        flash()->success('Votre paiement pour la grille à été prise en compte');
+                        return redirect()->route('mygame');
                     }
                 }
             }
