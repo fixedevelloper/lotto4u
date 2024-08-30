@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
           //  $table->renameColumn('idproof','reference');
-           // $table->foreignId('game_play_id')->constrained("game_plays");
+            $table->foreignId('game_play_id')->constrained("game_plays");
         });
     }
 
