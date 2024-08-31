@@ -29,7 +29,7 @@
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div>
-    @if(isset($lotto_fixture))
+ {{--   @if(isset($lotto_fixture))--}}
     @foreach($lotto_fixtures as $lotto_fixture)
 
 
@@ -47,9 +47,9 @@
     </div>--}}
     @endforeach
 
-@else
+{{--@else
    <div class="text-center">
        <img src="{{asset('assets/images/no-data.png')}}">
    </div>
-@endif
+@endif--}}
 @endsection
