@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('settings');
     Route::match(['POST','GET'],'/deposit', [DashboardController::class, 'deposit'])
         ->name('deposit');
+    Route::match(['POST','GET'],'/identity', [DashboardController::class, 'identity'])
+        ->name('identity');
 });
 
 Route::group(['prefix' => 'agensiccongo321admin'],function () {

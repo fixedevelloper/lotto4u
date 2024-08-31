@@ -17,6 +17,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class BackendController extends Controller
@@ -151,6 +152,7 @@ class BackendController extends Controller
             $winners[] = [
                 "game_id" => $game->id,
                 "user" => $user->name,
+                "user_id" => $user->id,
                 "phone" => $user->phone,
                 "count" => $count,
             ];
@@ -213,12 +215,21 @@ class BackendController extends Controller
         $data = json_decode($request->getContent(), true);
         $ob = $data['ob'];
         for ($i = 0; $i < sizeof($ob); ++$i) {
-            $transaction=new Transaction();
-            $transaction->game_play_id=$ob[$i]['game_play_id'];
-            $transaction->user_id=$ob[$i]['user_id'];
-            $transaction->amount=$ob[$i]['amount'];
-            $transaction->status="success";
-            $transaction->save();
+            DB::beginTransaction();
+            $transaction=Transaction::query()->firstWhere(['game_play_id'=>$ob[$i]['game_play_id']]);
+            if (is_null($transaction)){
+                $transaction=new Transaction();
+                $transaction->game_play_id=$ob[$i]['game_play_id'];
+                $transaction->user_id=$ob[$i]['user_id'];
+                $transaction->amount=$ob[$i]['amount'];
+                $transaction->status="success";
+                $transaction->save();
+                $user= User::query()->find($ob[$i]['user_id']);
+                $user->sold+=$ob[$i]['amount'];
+                $user->save();
+            }
+
+            DB::commit();
         }
         return response()->json($ob);
 

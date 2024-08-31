@@ -162,9 +162,8 @@ class DashboardController extends Controller
     }
     public function identity(Request $request)
     {
-        $address=Session::get("address_connect");
-        return view('account.identity', [
-            "address"=>$address,
+
+        return view('backend.identity', [
             'route'=>"dashboard"
         ]);
     }

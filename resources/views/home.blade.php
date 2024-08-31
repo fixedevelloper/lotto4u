@@ -29,8 +29,12 @@
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div>
+    @if(isset($lotto_fixture))
     @foreach($lotto_fixtures as $lotto_fixture)
+
+
 @include('_parts.grille',['grille'=>$lotto_fixture])
+
     {{--<div class="card">
         <a href="{{route('game',["id"=>$lotto_fixture->id])}}">
         <div class="card-inner">
@@ -42,4 +46,10 @@
         </a>
     </div>--}}
     @endforeach
+
+@else
+   <div class="text-center">
+       <img src="{{asset('assets/images/no-data.png')}}">
+   </div>
+@endif
 @endsection

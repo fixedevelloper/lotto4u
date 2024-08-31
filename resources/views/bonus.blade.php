@@ -10,4 +10,7 @@
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div>
+    <div>
+        <img src="{{asset('assets/images/no-data.png')}}">
+    </div>
 @endsection

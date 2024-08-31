@@ -116,7 +116,6 @@ class HomeController extends Controller
                 if (isset($rest['id'])){
                     $payment=Payment::query()->firstWhere(['reference'=>$refer]);
                     if ($rest['status']=="Success"){
-
                         if ($payment->status!="success"){
                             $payment->status="success";
                             $payment->save();
