@@ -10,7 +10,7 @@
                                 <div class="nk-block-head nk-block-head-lg">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h4 class="nk-block-title">Personal Information</h4>
+                                            <h4 class="nk-block-title">Liste de Parrainages</h4>
                                             <div class="nk-block-des">
                                                 <p>Basic info, like your name and address, that you use on Nio Platform.</p>
                                             </div>
@@ -21,45 +21,7 @@
                                     </div>
                                 </div><!-- .nk-block-head -->
                                 <div class="nk-block">
-                                    <form method="POST">
-                                        <input name="id" value="{{auth()->id()}}" hidden>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Name*</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="name" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Phone*</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="phone" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Email</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="email" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Addresse</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="address" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-lg btn-primary btn-block">Update</button>
-                                        </div>
-                                        @csrf
-                                    </form>
+
                                 </div><!-- .nk-block -->
                             </div>
                             <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
@@ -95,9 +57,9 @@
                                     </div><!-- .card-inner -->
                                     <div class="card-inner p-0">
                                         <ul class="link-list-menu">
-                                            <li><a class="active" href="{{route('identity')}}"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
+                                            <li><a href="{{route('identity')}}"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
                                             <li><a href="{{route('security')}}"><em class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a></li>
-                                            <li><a href="{{route('parrainnage')}}"><em class="icon ni ni-grid-add-fill-c"></em><span>Parainages</span></a></li>
+                                            <li><a class="active" href="{{route('parrainnage')}}"><em class="icon ni ni-grid-add-fill-c"></em><span>Parainages</span></a></li>
                                         </ul>
                                     </div><!-- .card-inner -->
                                 </div><!-- .card-inner-group -->

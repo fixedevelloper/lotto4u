@@ -10,9 +10,9 @@
                                 <div class="nk-block-head nk-block-head-lg">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h4 class="nk-block-title">Personal Information</h4>
+                                            <h4 class="nk-block-title">Security Information</h4>
                                             <div class="nk-block-des">
-                                                <p>Basic info, like your name and address, that you use on Nio Platform.</p>
+                                                <p>Changer votre mot de passe.</p>
                                             </div>
                                         </div>
                                         <div class="nk-block-head-content align-self-start d-lg-none">
@@ -25,36 +25,21 @@
                                         <input name="id" value="{{auth()->id()}}" hidden>
                                         <div class="form-group">
                                             <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Name*</label>
+                                                <label class="form-label" for="default-01">New password</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="name" required>
+                                                <input type="password" class="form-control form-control-lg" id="default-01" name="newpassword" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Phone*</label>
+                                                <label class="form-label" for="default-01">Old Password</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="phone" required>
+                                                <input type="password" class="form-control form-control-lg" id="default-01" name="oldpassword" required>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Email</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="email" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-label-group">
-                                                <label class="form-label" for="default-01">Addresse</label>
-                                            </div>
-                                            <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="address" required>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group">
                                             <button class="btn btn-lg btn-primary btn-block">Update</button>
                                         </div>
@@ -95,8 +80,8 @@
                                     </div><!-- .card-inner -->
                                     <div class="card-inner p-0">
                                         <ul class="link-list-menu">
-                                            <li><a class="active" href="{{route('identity')}}"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
-                                            <li><a href="{{route('security')}}"><em class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a></li>
+                                            <li><a href="{{route('identity')}}"><em class="icon ni ni-user-fill-c"></em><span>Personal Infomation</span></a></li>
+                                            <li><a class="active" href="{{route('security')}}"><em class="icon ni ni-lock-alt-fill"></em><span>Security Settings</span></a></li>
                                             <li><a href="{{route('parrainnage')}}"><em class="icon ni ni-grid-add-fill-c"></em><span>Parainages</span></a></li>
                                         </ul>
                                     </div><!-- .card-inner -->

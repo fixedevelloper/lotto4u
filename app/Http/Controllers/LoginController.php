@@ -83,10 +83,12 @@ class LoginController extends Controller
             $user->user_type=1;
             $user->password=bcrypt($request->get('password'));
             $user->save();
-            flash()->error("Registration successfully");
+            flash()->success("Registration successfully");
             return redirect()->route('login');
         }
-        return view('login.register');
+        return view('login.register',[
+            'parainage'=>$request->agensic_id
+        ]);
 
     }
 }

@@ -13,6 +13,7 @@
                 </div>
             </div>
             <form method="POST">
+                <input name="parrain_id" value="{{auth()->id()}}" hidden>
                 <div class="form-group">
                     <div class="form-label-group">
                         <label class="form-label" for="default-01">Name*</label>

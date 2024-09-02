@@ -9,6 +9,8 @@ Route::match(['POST','GET'],'/login', [LoginController::class, 'login'])
     ->name('login');
 Route::match(['POST','GET'],'/register_post', [LoginController::class, 'register'])
     ->name('register_post');
+Route::match(['POST','GET'],'/register_now', [LoginController::class, 'register'])
+    ->name('register_parainnage');
 Route::get('/destroy', [LoginController::class, 'destroy'])
     ->name('destroy');
 Route::match(["POST", "GET"], '/', [HomeController::class, 'home'])
@@ -43,6 +45,10 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('deposit');
     Route::match(['POST','GET'],'/identity', [DashboardController::class, 'identity'])
         ->name('identity');
+    Route::match(['POST','GET'],'/security', [DashboardController::class, 'security'])
+        ->name('security');
+    Route::match(['POST','GET'],'/parrainnage', [DashboardController::class, 'parrain'])
+        ->name('parrainnage');
 });
 
 Route::group(['prefix' => 'agensiccongo321admin'],function () {

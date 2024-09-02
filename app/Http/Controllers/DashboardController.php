@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {
@@ -163,8 +164,79 @@ class DashboardController extends Controller
     public function identity(Request $request)
     {
 
+        if ($request->method()=="POST"){
+            $validator = Validator::make($request->all(), $rules = [
+                'phone' => ['required'],
+                'name' => 'required',
+            ]);
+            if ($validator->fails()) {
+                flash()->error("Please fill in required fields");
+                return redirect()->back()
+                    ->withInput();
+            }
+            $user=Auth::user();
+            $user->name=$request->name;
+            $user->phone=$request->phone;
+            $user->email=$request->email;
+            $user->address=$request->address;
+            $user->save();
+            flash()->error("Update successfully");
+            return redirect()->route('identity');
+        }
         return view('backend.identity', [
-            'route'=>"dashboard"
+            'route'=>"id"
+        ]);
+    }
+    public function security(Request $request)
+    {
+
+        if ($request->method()=="POST"){
+            $validator = Validator::make($request->all(), $rules = [
+                'oldpassword' => ['required'],
+                'newpassword' => 'required',
+            ]);
+            if ($validator->fails()) {
+                flash()->error("Please fill in required fields");
+                return redirect()->back()
+                    ->withInput();
+            }
+            $user=User::query()->find($request->id);
+            $user->name=$request->name;
+            $user->phone=$request->phone;
+            $user->user_type=1;
+            $user->password=bcrypt($request->get('password'));
+            $user->save();
+            flash()->error("Update successfully");
+            return redirect()->route('identity');
+        }
+        return view('backend.security', [
+            'route'=>"id"
+        ]);
+    }
+    public function parrain(Request $request)
+    {
+
+        if ($request->method()=="POST"){
+            $validator = Validator::make($request->all(), $rules = [
+                'phone' => ['required'],
+                'name' => 'required',
+            ]);
+            if ($validator->fails()) {
+                flash()->error("Please fill in required fields");
+                return redirect()->back()
+                    ->withInput();
+            }
+            $user=User::query()->find($request->id);
+            $user->name=$request->name;
+            $user->phone=$request->phone;
+            $user->user_type=1;
+            $user->password=bcrypt($request->get('password'));
+            $user->save();
+            flash()->error("Update successfully");
+            return redirect()->route('identity');
+        }
+        return view('backend.parrainage', [
+            'route'=>"id"
         ]);
     }
     public function logout(Request $request)
