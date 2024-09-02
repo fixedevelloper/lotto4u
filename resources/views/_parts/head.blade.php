@@ -59,7 +59,7 @@
                     <li>
                         <a href="{{route('login')}}" class="btn btn-primary">
                             <i class="fa fa-sign"></i>
-                            <span class="">Login</span>
+                            <span style="margin-left: 15px" class="">Login</span>
                         </a>
                     </li>
                     @else

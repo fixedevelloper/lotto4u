@@ -62,6 +62,20 @@ class LoginController extends Controller
     public function register(Request $request)
     {
         if ($request->method()=="POST"){
+            $validator = Validator::make($request->all(), $rules = [
+                'phone' => ['required'],
+                'password' => 'required',
+
+            ], $messages = [
+                'phone.required' => 'phone field is required!',
+                'password.required' => 'password  is required!',
+            ]);
+            if ($validator->fails()) {
+                flash()->error("Please fill in required fields");
+                return redirect()->back()
+                    ->withErrors($validator)->with(['message' => $messages])
+                    ->withInput();
+            }
             $user=new User();
             $user->name=$request->name;
             $user->phone=$request->phone;
@@ -69,6 +83,8 @@ class LoginController extends Controller
             $user->user_type=1;
             $user->password=bcrypt($request->get('password'));
             $user->save();
+            flash()->error("Registration successfully");
+            return redirect()->route('login');
         }
         return view('login.register');
 

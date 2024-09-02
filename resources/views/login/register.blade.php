@@ -8,25 +8,25 @@
                 <div class="nk-block-head-content">
                     <h4 class="nk-block-title">Register-In</h4>
                     <div class="nk-block-des">
-                        <p>Access the DashLite panel using your email and passcode.</p>
+                        <p>Access the {{ env('APP_NAME')}} panel using your email and passcode.</p>
                     </div>
                 </div>
             </div>
             <form method="POST">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <label class="form-label" for="default-01">Name</label>
+                        <label class="form-label" for="default-01">Name*</label>
                     </div>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control form-control-lg" id="default-01" name="name">
+                        <input type="text" class="form-control form-control-lg" id="default-01" name="name" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <label class="form-label" for="default-01">Phone</label>
+                        <label class="form-label" for="default-01">Phone*</label>
                     </div>
                     <div class="form-control-wrap">
-                        <input type="text" class="form-control form-control-lg" id="default-01" name="phone">
+                        <input type="text" class="form-control form-control-lg" id="default-01" name="phone" required>
                     </div>
                 </div>
                     <div class="form-group">
@@ -39,7 +39,7 @@
                                 <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                 <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                             </a>
-                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your passcode">
+                            <input required type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter your passcode">
                         </div>
                     </div>
                     <div class="form-group">
