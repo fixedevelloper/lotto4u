@@ -16,8 +16,26 @@
                     <ul class="nk-menu nk-menu-main">
                         <li class="nk-menu-item">
                             <a href="{{route('home')}}" class="nk-menu-link">
-                                <i class="ni ni-home-fill"></i>
+                              {{--  <i class="ni ni-home-fill h5"></i>--}}
                                 <span class="nk-menu-text">Home</span>
+                            </a>
+                        </li><!-- .nk-menu-item -->
+                        <li class="nk-menu-item">
+                            <a href="{{route('home')}}" class="nk-menu-link">
+                                {{--  <i class="ni ni-home-fill h5"></i>--}}
+                                <span class="nk-menu-text">Contact</span>
+                            </a>
+                        </li><!-- .nk-menu-item -->
+                        <li class="nk-menu-item">
+                            <a href="{{route('home')}}" class="nk-menu-link">
+                                {{--  <i class="ni ni-home-fill h5"></i>--}}
+                                <span class="nk-menu-text">Resultats</span>
+                            </a>
+                        </li><!-- .nk-menu-item -->
+                        <li class="nk-menu-item">
+                            <a href="{{route('home')}}" class="nk-menu-link">
+                                {{--  <i class="ni ni-home-fill h5"></i>--}}
+                                <span class="nk-menu-text">Aide</span>
                             </a>
                         </li><!-- .nk-menu-item -->
                     </ul>

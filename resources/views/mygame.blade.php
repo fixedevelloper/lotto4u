@@ -1,17 +1,44 @@
 @extends('layout')
 
 @section('content')
-  {{--  <h3 class="account__head mb__30">
-        My Game
-    </h3>--}}
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <h3 class="nk-block-title page-title">Mes jeux</h3>
+                <div class="nk-block-des text-soft">
+                    <p>Listes de mes Jeux.</p>
+                </div>
+            </div><!-- .nk-block-head-content -->
+            <div class="nk-block-head-content">
+                <div class="toggle-wrap nk-block-tools-toggle">
+                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                    <div class="toggle-expand-content" data-content="pageMenu">
+                        <ul class="nk-block-tools g-3">
+                            <li>
+                                <form id="mygame_form">
+                                    <div class="form-control-wrap">
+                                        <div class="form-icon form-icon-right">
+                                           {{-- <em class="icon ni ni-calendar-alt"></em>--}}
+                                        </div>
+                                        <input data-date-format="yyyy-mm-dd" type="date" value="{{$date}}" class="form-control" name="date" id="myform_game_input">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+    </div>
+{{--
     <div class="promocode__wrap">
         <h3>
             My Game
         </h3>
         <form id="mygame_form">
-            <input type="date" value="{{$date}}" name="date" id="myform_game_input">
+            <input class="form-control form-control-lg mt-3" type="date" value="{{$date}}" name="date" id="myform_game_input">
         </form>
-    </div>
+    </div>--}}
     <div class="accordion mt-3" id="accordionExample">
         @foreach($mygames as $item)
     <div class="accordion-item" >

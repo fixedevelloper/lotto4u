@@ -5,7 +5,7 @@
             <div class="nk-block-head-content">
                 <h3 class="nk-block-title page-title">Lotto Game</h3>
                 <div class="nk-block-des text-soft">
-                    <p>Lists of games.</p>
+                    <p>Listes des lotto du jour.</p>
                 </div>
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
@@ -29,7 +29,7 @@
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
     </div>
- {{--   @if(isset($lotto_fixture))--}}
+   @if(isset($lotto_fixture))--}}
     @foreach($lotto_fixtures as $lotto_fixture)
 
 
@@ -47,9 +47,9 @@
     </div>--}}
     @endforeach
 
-{{--@else
+@else
    <div class="text-center">
        <img src="{{asset('assets/images/no-data.png')}}">
    </div>
-@endif--}}
+@endif
 @endsection
