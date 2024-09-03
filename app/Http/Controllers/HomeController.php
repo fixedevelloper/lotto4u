@@ -9,6 +9,7 @@ use App\Helper\Helper;
 use App\Helper\PaymentApi;
 use App\Helper\PaymentApiService;
 use App\Models\Contact;
+use App\Models\Fixture;
 use App\Models\GamePlay;
 use App\Models\LottoFixture;
 use App\Models\LottoFixtureItem;
@@ -17,6 +18,7 @@ use App\Models\Payment;
 use App\Models\PlayingFixture;
 use App\Models\RegisterOnline;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Flasher\Prime\Flasher;
@@ -58,6 +60,79 @@ class HomeController extends Controller
             "lotto_fixtures" => $list,
             'date' => $date_
         ]);
+    }
+    public function resultats(Request $request)
+    {
+        if (is_null($request->get('date'))) {
+            $date_ = Carbon::yesterday()->format('Y-m-d');
+            $timestamp = Carbon::today()->getTimestamp();
+        } else {
+            $date_ = $request->get('date');
+            $timestamp = Carbon::parse($date_)->getTimestamp();
+        }
+        $list=LottoFixture::query()->where('date_play','=',$date_)->orderByDesc('id')->limit(5)->get();
+        return view('all_results', [
+            'date' => $date_,
+            "lotto_fixtures" => $list,
+        ]);
+    }
+    public function help(Request $request)
+    {
+        return view('help', [
+
+        ]);
+    }
+    public function contact(Request $request)
+    {
+        return view('contact', [
+
+        ]);
+    }
+    public function resultatDetail(Request $request, $id)
+    {
+        $lotto = LottoFixture::find($id);
+        $list_items = LottoFixtureItem::query()->where(['lotto_fixture_id' => $id])->get();
+        $is_then = Carbon::parse($lotto->end_date)->diffInMinutes(Carbon::today()) > 0;
+        $games=Payment::query()
+            ->leftJoin('game_plays','game_plays.id','=','payments.game_play_id')
+            ->leftJoin('lotto_fixtures','lotto_fixtures.id','=','game_plays.lotto_fixture_id')
+            ->where(['lotto_fixtures.id'=>$id,'status'=>'success'])->get(['game_plays.id','game_plays.user_id']);
+        $winners = [];
+        foreach ($games as $game) {
+            $count = 0;
+            $choices=[];
+            $lists = PlayingFixture::query()->where(['game_play_id' => $game->id])->get();
+            foreach ($lists as $list) {
+                $fixture = Fixture::query()->firstWhere(['fixture_id' => $list->lotto_fixture_item->fixture_id]);
+                if ($fixture->score_ft_home>$fixture->score_ft_away && $list->value == 1) {
+                    $count++;
+                } elseif ($fixture->score_ft_home<$fixture->score_ft_away && $list->value == 2) {
+                    $count++;
+                } elseif ($fixture->score_ft_home==$fixture->score_ft_away && $list->value == 3) {
+                    $count++;
+                }
+            }
+            $user=User::query()->find($game->user_id);
+            $winners[] = [
+                "game_id" => $game->id,
+                "user" => $user->name,
+                "user_id" => $user->id,
+                "phone" => $user->phone,
+                "count" => $count,
+            ];
+        }
+        $count_items = LottoFixtureItem::query()->where(['lotto_fixture_id' => $id])->count();
+
+        $winners=Helper::ccountWinner($winners,$count_items);
+
+        return view('resultat-detail', [
+            "list_items" => $list_items,
+            "lotto" => $lotto,
+            "is_then" => $is_then,
+            'winners'=>$winners,
+            'count_players'=>count($games)
+        ]);
+
     }
     public function game(Request $request, $id)
     {

@@ -21,19 +21,19 @@
                             </a>
                         </li><!-- .nk-menu-item -->
                         <li class="nk-menu-item">
-                            <a href="{{route('home')}}" class="nk-menu-link">
+                            <a href="{{route('contact')}}" class="nk-menu-link">
                                 {{--  <i class="ni ni-home-fill h5"></i>--}}
                                 <span class="nk-menu-text">Contact</span>
                             </a>
                         </li><!-- .nk-menu-item -->
                         <li class="nk-menu-item">
-                            <a href="{{route('home')}}" class="nk-menu-link">
+                            <a href="{{route('resultats')}}" class="nk-menu-link">
                                 {{--  <i class="ni ni-home-fill h5"></i>--}}
                                 <span class="nk-menu-text">Resultats</span>
                             </a>
                         </li><!-- .nk-menu-item -->
                         <li class="nk-menu-item">
-                            <a href="{{route('home')}}" class="nk-menu-link">
+                            <a href="{{route('help')}}" class="nk-menu-link">
                                 {{--  <i class="ni ni-home-fill h5"></i>--}}
                                 <span class="nk-menu-text">Aide</span>
                             </a>

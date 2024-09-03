@@ -15,9 +15,16 @@ Route::get('/destroy', [LoginController::class, 'destroy'])
     ->name('destroy');
 Route::match(["POST", "GET"], '/', [HomeController::class, 'home'])
     ->name('home');
-//Route::group(['prefix' => $locale],function () {
+Route::match(["POST", "GET"], '/result_detail/{id}', [HomeController::class, 'resultatDetail'])
+    ->name('resultatDetail');
     Route::match(["POST", "GET"], '/home', [HomeController::class, 'home'])
         ->name('home');
+Route::match(["POST", "GET"], '/help', [HomeController::class, 'help'])
+    ->name('help');
+Route::match(["POST", "GET"], '/resultats', [HomeController::class, 'resultats'])
+    ->name('resultats');
+Route::match(["POST", "GET"], '/contact', [HomeController::class, 'contact'])
+    ->name('contact');
 Route::get('/game/{id}', [HomeController::class, 'game'])
     ->name('game');
 Route::get('/resultat/{id}', [HomeController::class, 'resultat'])

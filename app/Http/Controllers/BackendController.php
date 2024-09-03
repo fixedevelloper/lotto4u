@@ -165,14 +165,15 @@ class BackendController extends Controller
             "lotto" => $lotto,
             "winners"=>$winners,
             'route' => "lis_fixtures",
-            "count_items"=>$count_items
+            "count_items"=>$count_items,
+
         ]);
     }
     public function result(Request $request, $id)
     {
         $lotto = LottoFixture::find($id);
         $list_items = LottoFixtureItem::query()->where(['lotto_fixture_id' => $id])->get();
-        //$games = GamePlay::query()->where(['lotto_fixture_id' => $id])->get();
+
         $games=Payment::query()
             ->leftJoin('game_plays','game_plays.id','=','payments.game_play_id')
             ->leftJoin('lotto_fixtures','lotto_fixtures.id','=','game_plays.lotto_fixture_id')

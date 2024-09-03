@@ -92,55 +92,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                     {{--   <tr class="table__items b__bottom">
-                                            <td width="30%">
-                                                <span hidden>{{$item->id}}</span>
-                                                <span hidden>{{$fixture->fixture_id}}</span>
-                                                <h6>
-                                                    <img height="40" width="60"
-                                                         src="{{$fixture->team_home_logo}}">
-                                                    {{$fixture->team_home_name}}
-                                                </h6>
-                                            </td>
-                                            <td width="40%">
-                                                <div class="mart__point__items">
-                                                    <a href="javascript:void(0);" class="point__box">
-                                                        <input class="check-box" type="radio" name="{{$fixture->fixture_id}}" value="1" id="check1{{$item->id}}">
-                                                        <label for="check1{{$item->id}}">
-                                                            <span class="break">1</span>
-                                                            <div><i class="fas fa-check"></i></div>
-                                                        </label>
-
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="point__box">
-                                                        <input type="radio" name="{{$fixture->fixture_id}}" value="3" id="check3{{$item->id}}">
-                                                        <label for="check3{{$item->id}}">
-                                                            <span class="break">x</span>
-                                                            <div> <i class="fas fa-check"></i></div>
-                                                        </label>
-
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="point__box">
-                                                        <input type="radio" name="{{$fixture->fixture_id}}" value="2" id="check2{{$item->id}}">
-                                                        <label for="check2{{$item->id}}">
-                                                            <span class="break">2</span>
-                                                            <div><i class="fas fa-check"></i></div>
-                                                        </label>
-
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td  width="30%">
-                                                <h6>
-                                                    <img height="40"
-                                                         src="{{$fixture->team_away_logo}}">
-                                                    {{$fixture->team_away_name}}
-                                                </h6>
-                                            </td>
-                                        </tr>--}}
                                     @endforeach
-                              {{--      </tbody>
-                                </table>--}}
+
                             </div>
 
                     <div class="d-grid gap-2 mt-2 mb-5">

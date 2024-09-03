@@ -33,6 +33,37 @@ class Helper
         logger($gameID);
         return $cagnotte*env('PRICE_GAME');
     }
+    static function ccountWinner($players,$totalfixture){
+        $winner_x_x= array_filter($players,function ($iten) use ($totalfixture) {
+            $res=false;
+            $value= $totalfixture- $iten["count"];
+            if ($value==0){
+                $res= true;
+            }
+            return $res;
+        });
+        $winner_1_x= array_filter($players,function ($iten) use ($totalfixture) {
+            $res=false;
+            $value= $totalfixture- $iten["count"];
+            if ($value==1){
+                $res= true;
+            }
+            return $res;
+        });
+        $winner_x_2= array_filter($players,function ($iten) use ($totalfixture) {
+            $res=false;
+            $value= $totalfixture- $iten["count"];
+            if ($value==2){
+                $res= true;
+            }
+            return $res;
+        });
+        return[
+            "win_xx"=>count($winner_x_x),
+            "win_1x"=>count($winner_1_x),
+            "win_2x"=>count($winner_x_2),
+        ];
+    }
     static function calculAmountWinner($cagnote,$players,$totalfixture){
         $amount_winners=[];
         $amount_x_x=$cagnote*0.5;
