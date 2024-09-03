@@ -12,7 +12,7 @@
                                         <div class="nk-block-head-content">
                                             <h4 class="nk-block-title">Liste de Parrainages</h4>
                                             <div class="nk-block-des">
-                                                <p>Basic info, like your name and address, that you use on Nio Platform.</p>
+                                                <p>.</p>
                                             </div>
                                         </div>
                                         <div class="nk-block-head-content align-self-start d-lg-none">
@@ -21,7 +21,23 @@
                                     </div>
                                 </div><!-- .nk-block-head -->
                                 <div class="nk-block">
-
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Phone</th>
+                                            <th>Gains</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($lists as $list)
+                                        <tr>
+                                            <td>{{$list->name}}</td>
+                                            <td>{{$list->phone}}</td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div><!-- .nk-block -->
                             </div>
                             <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">

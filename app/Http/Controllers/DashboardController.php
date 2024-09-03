@@ -216,27 +216,11 @@ class DashboardController extends Controller
     public function parrain(Request $request)
     {
 
-        if ($request->method()=="POST"){
-            $validator = Validator::make($request->all(), $rules = [
-                'phone' => ['required'],
-                'name' => 'required',
-            ]);
-            if ($validator->fails()) {
-                flash()->error("Please fill in required fields");
-                return redirect()->back()
-                    ->withInput();
-            }
-            $user=User::query()->find($request->id);
-            $user->name=$request->name;
-            $user->phone=$request->phone;
-            $user->user_type=1;
-            $user->password=bcrypt($request->get('password'));
-            $user->save();
-            flash()->error("Update successfully");
-            return redirect()->route('identity');
-        }
+        $user=Auth::user();
+        $lists=User::query()->where(['parrain_id'=>$user->id])->paginate(10);
         return view('backend.parrainage', [
-            'route'=>"id"
+            'route'=>"id",
+            'lists'=>$lists
         ]);
     }
     public function logout(Request $request)

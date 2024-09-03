@@ -28,7 +28,7 @@
                                                 <label class="form-label" for="default-01">Name*</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="name" required>
+                                                <input type="text" value="{{auth()->user()->name}}" class="form-control form-control-lg" id="default-01" name="name" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -36,7 +36,7 @@
                                                 <label class="form-label" for="default-01">Phone*</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="phone" required>
+                                                <input value="{{auth()->user()->phone}}" type="text" class="form-control form-control-lg" id="default-01" name="phone" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -44,7 +44,7 @@
                                                 <label class="form-label" for="default-01">Email</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="email" required>
+                                                <input value="{{auth()->user()->email}}" type="text" class="form-control form-control-lg" id="default-01" name="email" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -52,7 +52,7 @@
                                                 <label class="form-label" for="default-01">Addresse</label>
                                             </div>
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control form-control-lg" id="default-01" name="address" required>
+                                                <input value="{{auth()->user()->address}}" type="text" class="form-control form-control-lg" id="default-01" name="address" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
